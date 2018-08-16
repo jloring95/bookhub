@@ -4,7 +4,7 @@ import { Message } from "semantic-ui-react";
 const ConfirmEmailMessage = () => (
   <Message info>
     <Message.Header>
-      Please, verify your email to unlock awesomeness
+      Verify your email to unlock the full application
     </Message.Header>
   </Message>
 );
