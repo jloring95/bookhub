@@ -8,6 +8,8 @@ import Promise from "bluebird";
 import auth from "./routes/auth";
 import users from "./routes/users";
 import books from "./routes/books";
+const PORT = process.env.PORT || 3001;
+
 
 dotenv.config();
 const app = express();
@@ -23,4 +25,4 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(8080, () => console.log("Running on localhost:8080"));
+app.listen(PORT, () => console.log("Running on localhost:3001"));
