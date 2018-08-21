@@ -1,10 +1,16 @@
 {
   "name": "bookhub-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "",
   "scripts": {
-    "start": "nodemon --exec babel-node -- bookhub-api/src/index.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "nodemon --exec babel-node -- src/index.js",
+    "start:dev": "concurrently \"nodemon --exec babel-node -- src/index.js\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && yarn install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -25,6 +31,7 @@
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "concurrently": "^3.6.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "jsonwebtoken": "^7.4.3",
@@ -35,5 +42,10 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "request-promise": "^4.2.2",
     "xml2js": "^0.4.19"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
